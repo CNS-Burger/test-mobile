@@ -6,8 +6,12 @@ import ReactPlayer from "react-player";
 export default function VideoPage() {
   const playerRef = useRef<ReactPlayer>(null);
   const playerRef2 = useRef<ReactPlayer>(null);
+  const playerRef3 = useRef<ReactPlayer>(null);
+  const playerRef4 = useRef<ReactPlayer>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPlaying2, setIsPlaying2] = useState(false);
+  const [isPlaying3, setIsPlaying3] = useState(false);
+  const [isPlaying4, setIsPlaying4] = useState(false);
   const [src, setSrc] = useState("");
 
   const width = 640;
@@ -17,41 +21,54 @@ export default function VideoPage() {
   const isLoopEnabled = false;
   const progressInterval = 1000;
 
-  const handlePlay = () => {
-    setIsPlaying(true);
+  const handlePlay = (index: number) => {
+    if (index === 1) {
+      setIsPlaying(true);
+    } else if (index === 2) {
+      setIsPlaying2(true);
+    } else if (index === 3) {
+      setIsPlaying3(true);
+    } else if (index === 4) {
+      setIsPlaying4(true);
+    }
   };
 
-  const handlePause = () => {
-    setIsPlaying(false);
+  const handlePause = (index: number) => {
+    if (index === 1) {
+      setIsPlaying(false);
+    } else if (index === 2) {
+      setIsPlaying2(false);
+    } else if (index === 3) {
+      setIsPlaying3(false);
+    } else if (index === 4) {
+      setIsPlaying4(false);
+    }
   };
 
-  const handleFinishPlaying = () => {
-    setIsPlaying(false);
-  };
-
-  const handlePlay2 = () => {
-    setIsPlaying2(true);
-  };
-
-  const handlePause2 = () => {
-    setIsPlaying2(false);
-  };
-
-  const handleFinishPlaying2 = () => {
-    setIsPlaying2(false);
+  const handleFinishPlaying = (index: number) => {
+    if (index === 1) {
+      setIsPlaying(false);
+    } else if (index === 2) {
+      setIsPlaying2(false);
+    } else if (index === 3) {
+      setIsPlaying3(false);
+    } else if (index === 4) {
+      setIsPlaying4(false);
+    }
   };
 
   return (
     <div>
+      <h1>Version 1.0.0</h1>
       <div>
-        <h1>Video Player1</h1>
+        <h3>Video Player1</h3>
         <input
           type="text"
           value={src}
           onChange={(e) => setSrc(e.target.value)}
         />
-        <button onClick={handlePlay}>Play</button>
-        <button onClick={handlePause}>Pause</button>
+        <button onClick={() => handlePlay(1)}>Play</button>
+        <button onClick={() => handlePause(1)}>Pause</button>
         <button onClick={() => setSrc("")}>clear</button>
         <ReactPlayer
           ref={playerRef}
@@ -63,22 +80,22 @@ export default function VideoPage() {
           playbackRate={speed}
           loop={isLoopEnabled}
           progressInterval={progressInterval}
-          onPlay={handlePlay}
-          onPause={handlePause}
-          onEnded={handleFinishPlaying}
+          onPlay={() => handlePlay(1)}
+          onPause={() => handlePause(1)}
+          onEnded={() => handleFinishPlaying(1)}
           //   controls
           playsinline
         />
       </div>
       <div>
-        <h1>Video Player2</h1>
+        <h3>Video Player2</h3>
         <input
           type="text"
           value={src}
           onChange={(e) => setSrc(e.target.value)}
         />
-        <button onClick={handlePlay}>Play</button>
-        <button onClick={handlePause}>Pause</button>
+        <button onClick={() => handlePlay(2)}>Play</button>
+        <button onClick={() => handlePause(2)}>Pause</button>
         <ReactPlayer
           ref={playerRef2}
           url={src}
@@ -89,9 +106,62 @@ export default function VideoPage() {
           playbackRate={speed}
           loop={isLoopEnabled}
           progressInterval={progressInterval}
-          onPlay={handlePlay2}
-          onPause={handlePause2}
-          onEnded={handleFinishPlaying2}
+          onPlay={() => handlePlay(2)}
+          onPause={() => handlePause(2)}
+          onEnded={() => handleFinishPlaying(2)}
+          controls
+          playsinline
+        />
+      </div>
+      <div>
+        <h3>Video Player3</h3>
+        <input
+          type="text"
+          value={src}
+          onChange={(e) => setSrc(e.target.value)}
+        />
+        <button onClick={() => handlePlay(3)}>Play</button>
+        <button onClick={() => handlePause(3)}>Pause</button>
+        <button onClick={() => setSrc("")}>clear</button>
+        <ReactPlayer
+          ref={playerRef3}
+          url={src}
+          width={Number.isNaN(width) ? width : `${width}px`}
+          height={Number.isNaN(height) ? width : `${height}px`}
+          playing={isPlaying3}
+          volume={(volume * 1.0) / 100}
+          playbackRate={speed}
+          loop={isLoopEnabled}
+          progressInterval={progressInterval}
+          onPlay={() => handlePlay(3)}
+          onPause={() => handlePause(3)}
+          onEnded={() => handleFinishPlaying(3)}
+          //   controls
+          playsinline
+        />
+      </div>
+      <div>
+        <h3>Video Player4</h3>
+        <input
+          type="text"
+          value={src}
+          onChange={(e) => setSrc(e.target.value)}
+        />
+        <button onClick={() => handlePlay(4)}>Play</button>
+        <button onClick={() => handlePause(4)}>Pause</button>
+        <ReactPlayer
+          ref={playerRef4}
+          url={[{ src: src, type: "video/webm" }]}
+          width={Number.isNaN(width) ? width : `${width}px`}
+          height={Number.isNaN(height) ? width : `${height}px`}
+          playing={isPlaying4}
+          volume={(volume * 1.0) / 100}
+          playbackRate={speed}
+          loop={isLoopEnabled}
+          progressInterval={progressInterval}
+          onPlay={() => handlePlay(4)}
+          onPause={() => handlePause(4)}
+          onEnded={() => handleFinishPlaying(4)}
           controls
           playsinline
         />
