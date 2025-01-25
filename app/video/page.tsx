@@ -70,9 +70,20 @@ export default function VideoPage() {
         <button onClick={() => handlePlay(1)}>Play</button>
         <button onClick={() => handlePause(1)}>Pause</button>
         <button onClick={() => setSrc("")}>clear</button>
+        <video src={src} controls />
+      </div>
+      <div>
+        <h3>Video Player1</h3>
+        <input
+          type="text"
+          value={src}
+          onChange={(e) => setSrc(e.target.value)}
+        />
+        <button onClick={() => handlePlay(1)}>Play</button>
+        <button onClick={() => handlePause(1)}>Pause</button>
         <ReactPlayer
           ref={playerRef}
-          url={[{ src: src, type: "video/webm" }]}
+          url={src}
           width={Number.isNaN(width) ? width : `${width}px`}
           height={Number.isNaN(height) ? width : `${height}px`}
           playing={isPlaying}
@@ -83,7 +94,7 @@ export default function VideoPage() {
           onPlay={() => handlePlay(1)}
           onPause={() => handlePause(1)}
           onEnded={() => handleFinishPlaying(1)}
-          //   controls
+          controls
           playsinline
         />
       </div>
