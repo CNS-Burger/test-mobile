@@ -80,11 +80,11 @@ export default function VideoPage() {
         <button onClick={handlePlay}>Play</button>
         <button onClick={handlePause}>Pause</button>
         <ReactPlayer
-          ref={playerRef}
+          ref={playerRef2}
           url={src}
           width={Number.isNaN(width) ? width : `${width}px`}
           height={Number.isNaN(height) ? width : `${height}px`}
-          playing={isPlaying}
+          playing={isPlaying2}
           volume={(volume * 1.0) / 100}
           playbackRate={speed}
           loop={isLoopEnabled}
