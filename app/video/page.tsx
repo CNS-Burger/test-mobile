@@ -76,7 +76,7 @@ export default function VideoPage() {
           <video src={src} controls />
         </div>
         <div>
-          <video controls>
+          <video controls src={src}>
             <source src={src} type="video/webm" />
           </video>
         </div>
