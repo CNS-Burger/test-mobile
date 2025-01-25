@@ -55,7 +55,7 @@ export default function VideoPage() {
         <button onClick={() => setSrc("")}>clear</button>
         <ReactPlayer
           ref={playerRef}
-          url={src}
+          url={[{ src: src, type: "video/webm" }]}
           width={Number.isNaN(width) ? width : `${width}px`}
           height={Number.isNaN(height) ? width : `${height}px`}
           playing={isPlaying}
