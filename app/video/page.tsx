@@ -59,7 +59,7 @@ export default function VideoPage() {
 
   return (
     <div>
-      <h1>Version 1.0.2</h1>
+      <h1>Version 1.0.4</h1>
       <div>
         <div>
           <h3>Video Player1</h3>
