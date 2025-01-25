@@ -61,16 +61,25 @@ export default function VideoPage() {
     <div>
       <h1>Version 1.0.0</h1>
       <div>
-        <h3>Video Player1</h3>
-        <input
-          type="text"
-          value={src}
-          onChange={(e) => setSrc(e.target.value)}
-        />
-        <button onClick={() => handlePlay(1)}>Play</button>
-        <button onClick={() => handlePause(1)}>Pause</button>
-        <button onClick={() => setSrc("")}>clear</button>
-        <video src={src} controls />
+        <div>
+          <h3>Video Player1</h3>
+          <input
+            type="text"
+            value={src}
+            onChange={(e) => setSrc(e.target.value)}
+          />
+          <button onClick={() => handlePlay(1)}>Play</button>
+          <button onClick={() => handlePause(1)}>Pause</button>
+          <button onClick={() => setSrc("")}>clear</button>
+        </div>
+        <div>
+          <video src={src} controls />
+        </div>
+        <div>
+          <video controls>
+            <source src={src} type="video/webm" />
+          </video>
+        </div>
       </div>
       <div>
         <h3>Video Player1</h3>
