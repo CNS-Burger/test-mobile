@@ -14,8 +14,8 @@ export default function VideoPage() {
   const [isPlaying4, setIsPlaying4] = useState(false);
   const [src, setSrc] = useState("");
 
-  const width = 640;
-  const height = 360;
+  const width = 340;
+  const height = 180;
   const volume = 50;
   const speed = 1;
   const isLoopEnabled = false;
@@ -73,11 +73,11 @@ export default function VideoPage() {
           <button onClick={() => setSrc("")}>clear</button>
         </div>
         <div>
-          <video src={src} controls />
+          <video width={width} height={height} src={src} controls />
         </div>
         <div>
-          <video controls src={src}>
-            <source src={src} type="video/webm" />
+          <video width={width} height={height} src={src} controls>
+            <source type="video/webm" />
           </video>
         </div>
       </div>
