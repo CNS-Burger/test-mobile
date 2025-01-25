@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player";
 
 export default function VideoPage() {
@@ -10,6 +10,7 @@ export default function VideoPage() {
   const [isPlaying3, setIsPlaying3] = useState(false);
   const [isPlaying4, setIsPlaying4] = useState(false);
   const [src, setSrc] = useState("");
+  const [message, setMessage] = useState("");
 
   const width = 340;
   const height = 180;
@@ -57,9 +58,22 @@ export default function VideoPage() {
     }
   };
 
+  useEffect(() => {
+    if (playerRef.current) {
+      playerRef.current.src = src;
+      playerRef.current.load();
+      playerRef.current.onerror = (e) => {
+        setMessage(`음원 파일 로드 실패 : ${JSON.stringify(e)}`);
+      };
+      playerRef.current.onload = () => {
+        setMessage("음원 파일 로드 완료");
+      };
+    }
+  }, [src]);
+
   return (
     <div>
-      <h1>Version 1.0.5</h1>
+      <h1>Version 1.0.6</h1>
       <div>
         <div>
           <h3>Video Player1</h3>
@@ -71,14 +85,15 @@ export default function VideoPage() {
           <button onClick={() => handlePlay(1)}>Play</button>
           <button onClick={() => handlePause(1)}>Pause</button>
           <button onClick={() => setSrc("")}>clear</button>
-        </div>
-        <div>
-          <video ref={playerRef} width={width} height={height} src={src} />
+          <p>message : {message}</p>
         </div>
         <div>
           <video ref={playerRef} width={width} height={height} src={src}>
             <source type="video/webm" />
           </video>
+        </div>
+        <div>
+          <video ref={playerRef} width={width} height={height} src={src} />
         </div>
       </div>
 
