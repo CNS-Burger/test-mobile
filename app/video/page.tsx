@@ -73,7 +73,7 @@ export default function VideoPage() {
 
   return (
     <div>
-      <h1>Version 1.0.6</h1>
+      <h1>Version 1.0.7</h1>
       <div>
         <div>
           <h3>Video Player1</h3>
@@ -88,12 +88,16 @@ export default function VideoPage() {
           <p>message : {message}</p>
         </div>
         <div>
-          <video ref={playerRef} width={width} height={height} src={src}>
+          <video
+            ref={playerRef}
+            width={width}
+            height={height}
+            src={src}
+            playsInline
+            crossOrigin="anonymous"
+          >
             <source type="video/webm" />
           </video>
-        </div>
-        <div>
-          <video ref={playerRef} width={width} height={height} src={src} />
         </div>
       </div>
 
