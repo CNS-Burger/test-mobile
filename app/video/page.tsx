@@ -73,7 +73,7 @@ export default function VideoPage() {
 
   return (
     <div>
-      <h1>Version 1.0.7</h1>
+      <h1>Version 1.0.8</h1>
       <div>
         <div>
           <h3>Video Player1</h3>
@@ -94,7 +94,6 @@ export default function VideoPage() {
             height={height}
             src={src}
             playsInline
-            crossOrigin="anonymous"
           >
             <source type="video/webm" />
           </video>
