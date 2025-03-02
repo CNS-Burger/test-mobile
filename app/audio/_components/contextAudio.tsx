@@ -43,6 +43,8 @@ export default function ContextAudio() {
     if (!startedAudio) {
       if (!audioBuffer || !audioContextRef.current) return;
 
+      audioContextRef.current.resume();
+
       // stopAudio(); // 기존 재생 중인 오디오 정지
 
       const audioCtx = audioContextRef.current;
