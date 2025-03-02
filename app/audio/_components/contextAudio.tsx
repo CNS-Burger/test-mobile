@@ -12,6 +12,9 @@ export default function ContextAudio() {
   const [startedAudio, setStartedAudio] = useState(false);
   const [stream, setStream] = useState<MediaStream | null>(null);
 
+  const [status1, setStatus1] = useState<string>("");
+  const [status2, setStatus2] = useState<string>("");
+
   useEffect(() => {
     // audioContextRef.current = new AudioContext();
 
@@ -25,7 +28,12 @@ export default function ContextAudio() {
 
   const createAudio = async () => {
     audioContextRef.current = new AudioContext();
+
+    console.log("status1 : ", audioContextRef.current.state);
+    setStatus1(audioContextRef.current.state);
     await audioContextRef.current.resume();
+    console.log("status2 : ", audioContextRef.current.state);
+    setStatus2(audioContextRef.current.state);
     loadAudio("/rateSample.mp3");
   };
 
@@ -124,6 +132,11 @@ export default function ContextAudio() {
       <button onClick={isPlaying ? pauseAudio : playAudio}>
         {isPlaying ? "일시정지" : "재생"}
       </button>
+      <div>
+        <span>status1 : {status1}</span>
+        <br />
+        <span>status2 : {status2}</span>
+      </div>
       <div style={{ marginTop: "10px" }}>
         <span>재생 속도:</span>
         {[0.5, 1, 1.5, 2].map((speed) => (
