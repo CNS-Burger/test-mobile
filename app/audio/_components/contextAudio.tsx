@@ -23,15 +23,16 @@ export default function ContextAudio() {
     };
   }, []);
 
-  const createAudio = () => {
+  const createAudio = async () => {
     audioContextRef.current = new AudioContext();
+    await audioContextRef.current.resume();
     loadAudio("/rateSample.mp3");
-    audioContextRef.current.resume();
   };
 
   // 오디오 파일 로드 및 디코딩
   const loadAudio = async (url: string) => {
     console.log("loadAudio");
+
     try {
       const response = await fetch(url);
       const arrayBuffer = await response.arrayBuffer();
