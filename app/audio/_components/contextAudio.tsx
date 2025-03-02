@@ -14,6 +14,7 @@ export default function ContextAudio() {
 
   const [status1, setStatus1] = useState<string>("");
   const [status2, setStatus2] = useState<string>("");
+  const [status3, setStatus3] = useState<string>("");
 
   useEffect(() => {
     // audioContextRef.current = new AudioContext();
@@ -72,8 +73,10 @@ export default function ContextAudio() {
       setStream(newStream);
 
       source.buffer = audioBuffer;
-      source.playbackRate.value = playbackRate; // 재생 속도 설정
+      //   source.playbackRate.value = playbackRate; // 재생 속도 설정
       source.connect(gainNode);
+      setStatus3(audioContextRef.current.state);
+
       gainNode.connect(audioCtx.destination);
 
       setTimeout(() => {
@@ -136,6 +139,8 @@ export default function ContextAudio() {
         <span>status1 : {status1}</span>
         <br />
         <span>status2 : {status2}</span>
+        <br />
+        <span>status3 : {status3}</span>
       </div>
       <div style={{ marginTop: "10px" }}>
         <span>재생 속도:</span>
