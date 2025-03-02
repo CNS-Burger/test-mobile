@@ -7,7 +7,7 @@ export default function AudioPage() {
       <h1>classic Audio</h1>
       <ClassicAudio />
 
-      <h1>context Audio</h1>
+      <h1>context Audio 2</h1>
       <ContextAudio />
     </div>
   );

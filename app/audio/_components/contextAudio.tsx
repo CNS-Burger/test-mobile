@@ -26,6 +26,7 @@ export default function ContextAudio() {
   const createAudio = () => {
     audioContextRef.current = new AudioContext();
     loadAudio("/rateSample.mp3");
+    audioContextRef.current.resume();
   };
 
   // 오디오 파일 로드 및 디코딩
@@ -48,7 +49,7 @@ export default function ContextAudio() {
     console.log("playAudio");
     if (!startedAudio) {
       if (!audioBuffer || !audioContextRef.current) return;
-      audioContextRef.current.resume();
+
       // stopAudio(); // 기존 재생 중인 오디오 정지
 
       const audioCtx = audioContextRef.current;
