@@ -29,6 +29,8 @@ export default function ContextAudio() {
 
   const createAudio = async () => {
     audioContextRef.current = new AudioContext();
+    const audio = new Audio();
+    console.log("audio : ", audio);
 
     console.log("status1 : ", audioContextRef.current.state);
     setStatus1(audioContextRef.current.state);
