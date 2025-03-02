@@ -13,16 +13,20 @@ export default function ContextAudio() {
   const [stream, setStream] = useState<MediaStream | null>(null);
 
   useEffect(() => {
-    audioContextRef.current = new AudioContext();
+    // audioContextRef.current = new AudioContext();
 
-    audioContextRef.current.resume();
-    loadAudio("/rateSample.mp3");
+    // loadAudio("/rateSample.mp3");
 
     return () => {
       stopAudio();
       audioContextRef.current?.close();
     };
   }, []);
+
+  const createAudio = () => {
+    audioContextRef.current = new AudioContext();
+    loadAudio("/rateSample.mp3");
+  };
 
   // 오디오 파일 로드 및 디코딩
   const loadAudio = async (url: string) => {
@@ -44,7 +48,7 @@ export default function ContextAudio() {
     console.log("playAudio");
     if (!startedAudio) {
       if (!audioBuffer || !audioContextRef.current) return;
-
+      audioContextRef.current.resume();
       // stopAudio(); // 기존 재생 중인 오디오 정지
 
       const audioCtx = audioContextRef.current;
@@ -110,6 +114,9 @@ export default function ContextAudio() {
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
       <h2>오디오 플레이어 (AudioContext)</h2>
+      <button onClick={createAudio} style={{ marginRight: "10px" }}>
+        오디오 생성
+      </button>
       <button onClick={isPlaying ? pauseAudio : playAudio}>
         {isPlaying ? "일시정지" : "재생"}
       </button>
