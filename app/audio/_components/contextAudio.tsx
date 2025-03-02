@@ -14,6 +14,8 @@ export default function ContextAudio() {
 
   useEffect(() => {
     audioContextRef.current = new AudioContext();
+
+    audioContextRef.current.resume();
     loadAudio("/rateSample.mp3");
 
     return () => {
@@ -42,8 +44,6 @@ export default function ContextAudio() {
     console.log("playAudio");
     if (!startedAudio) {
       if (!audioBuffer || !audioContextRef.current) return;
-
-      audioContextRef.current.resume();
 
       // stopAudio(); // 기존 재생 중인 오디오 정지
 
