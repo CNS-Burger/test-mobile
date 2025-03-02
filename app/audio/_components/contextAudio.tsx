@@ -68,7 +68,9 @@ export default function ContextAudio() {
       source.connect(gainNode);
       gainNode.connect(audioCtx.destination);
 
-      source.start(0);
+      setTimeout(() => {
+        source.start(0);
+      }, 0);
       source.onended = () => setIsPlaying(false);
 
       sourceNodeRef.current = source;
