@@ -14,8 +14,8 @@ export default function ContextAudio() {
 
   const [status1, setStatus1] = useState<string>("");
   const [status2, setStatus2] = useState<string>("");
-  const [status3, setStatus3] = useState<string>("");
-  const [status4, setStatus4] = useState<string>("");
+  //   const [status3, setStatus3] = useState<string>("");
+  //   const [status4, setStatus4] = useState<string>("");
 
   useEffect(() => {
     // audioContextRef.current = new AudioContext();
@@ -59,7 +59,6 @@ export default function ContextAudio() {
 
   // 오디오 재생
   const playAudio = async () => {
-    console.log("playAudio");
     if (!audioContextRef.current) return;
 
     if (audioContextRef.current.state === "suspended") {
@@ -70,31 +69,28 @@ export default function ContextAudio() {
     if (!startedAudio) {
       if (!audioBuffer || !audioContextRef.current) return;
 
-      // stopAudio(); // 기존 재생 중인 오디오 정지
-
       const audioCtx = audioContextRef.current;
       const source = audioCtx.createBufferSource();
       const gainNode = audioCtx.createGain();
-      console.log("gainNode : ", gainNode.gain.value);
-      gainNode.gain.value = 1.0;
-      source.connect(gainNode);
-      gainNode.connect(audioCtx.destination);
-      setStatus4(gainNode.gain.value.toString());
+      gainNode.gain.value = 1.0; // 볼륨 기본값 설정
 
-      const streamDestination =
-        audioContextRef.current.createMediaStreamDestination();
+      console.log("현재 볼륨:", gainNode.gain.value);
+
+      const streamDestination = audioCtx.createMediaStreamDestination();
       const newStream = streamDestination.stream;
-      source.connect(streamDestination);
       setStream(newStream);
 
+      // 연결 순서 보장 (출력 활성화)
       source.buffer = audioBuffer;
-      //   source.playbackRate.value = playbackRate; // 재생 속도 설정
-
-      setStatus3(audioContextRef.current.state);
+      source.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+      source.connect(streamDestination); // 스트림 연결
 
       setTimeout(() => {
         source.start(0);
+        console.log("오디오 재생 시작됨");
       }, 0);
+
       source.onended = () => setIsPlaying(false);
 
       sourceNodeRef.current = source;
@@ -152,10 +148,10 @@ export default function ContextAudio() {
         <span>status1 : {status1}</span>
         <br />
         <span>status2 : {status2}</span>
-        <br />
+        {/* <br />
         <span>status3 : {status3}</span>
         <br />
-        <span>status4 : {status4}</span>
+        <span>status4 : {status4}</span> */}
       </div>
       <div style={{ marginTop: "10px" }}>
         <span>재생 속도:</span>
