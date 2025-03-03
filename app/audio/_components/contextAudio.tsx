@@ -57,8 +57,15 @@ export default function ContextAudio() {
   };
 
   // 오디오 재생
-  const playAudio = () => {
+  const playAudio = async () => {
     console.log("playAudio");
+    if (!audioContextRef.current) return;
+
+    if (audioContextRef.current.state === "suspended") {
+      await audioContextRef.current.resume();
+      console.log("AudioContext resumed before play");
+    }
+
     if (!startedAudio) {
       if (!audioBuffer || !audioContextRef.current) return;
 
