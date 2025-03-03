@@ -76,7 +76,9 @@ export default function ContextAudio() {
       const source = audioCtx.createBufferSource();
       const gainNode = audioCtx.createGain();
       console.log("gainNode : ", gainNode.gain.value);
-
+      gainNode.gain.value = 1.0;
+      source.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
       setStatus4(gainNode.gain.value.toString());
 
       const streamDestination =
@@ -87,10 +89,8 @@ export default function ContextAudio() {
 
       source.buffer = audioBuffer;
       //   source.playbackRate.value = playbackRate; // 재생 속도 설정
-      source.connect(gainNode);
-      setStatus3(audioContextRef.current.state);
 
-      gainNode.connect(audioCtx.destination);
+      setStatus3(audioContextRef.current.state);
 
       setTimeout(() => {
         source.start(0);
