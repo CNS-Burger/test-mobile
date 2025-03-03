@@ -15,6 +15,7 @@ export default function ContextAudio() {
   const [status1, setStatus1] = useState<string>("");
   const [status2, setStatus2] = useState<string>("");
   const [status3, setStatus3] = useState<string>("");
+  const [status4, setStatus4] = useState<string>("");
 
   useEffect(() => {
     // audioContextRef.current = new AudioContext();
@@ -74,6 +75,9 @@ export default function ContextAudio() {
       const audioCtx = audioContextRef.current;
       const source = audioCtx.createBufferSource();
       const gainNode = audioCtx.createGain();
+      console.log("gainNode : ", gainNode.gain.value);
+
+      setStatus4(gainNode.gain.value.toString());
 
       const streamDestination =
         audioContextRef.current.createMediaStreamDestination();
@@ -150,6 +154,8 @@ export default function ContextAudio() {
         <span>status2 : {status2}</span>
         <br />
         <span>status3 : {status3}</span>
+        <br />
+        <span>status4 : {status4}</span>
       </div>
       <div style={{ marginTop: "10px" }}>
         <span>재생 속도:</span>
