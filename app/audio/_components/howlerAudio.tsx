@@ -22,6 +22,7 @@ export default function ContextAudio() {
     audio.current = new Howl({
                 src: ["/rateSample.mp3"],
                 format: "mp3",
+                html5: true,
                 // autoplay: true,
                 onplayerror: () => {
                     console.log("음원 파일 로드 실패");
