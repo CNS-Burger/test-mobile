@@ -12,7 +12,7 @@ export default function AudioPage() {
       <h1>context Audio 10</h1>
       <ContextAudio />
 
-      <h1>howler Audio 1</h1>
+      <h1>howler Audio 2</h1>
       <HowlerAudio />
     </div>
   );
