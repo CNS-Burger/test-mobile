@@ -1,7 +1,7 @@
 import ClassicAudio from "./_components/classicAudio";
 import ContextAudio from "./_components/contextAudio";
 import HowlerAudio from "./_components/howlerAudio";
-
+import SupportType from "./_components/supportType";
 
 export default function AudioPage() {
   return (
@@ -14,6 +14,9 @@ export default function AudioPage() {
 
       <h1>howler Audio 2</h1>
       <HowlerAudio />
+
+      <h1>support Type</h1>
+      <SupportType />
     </div>
   );
 }
