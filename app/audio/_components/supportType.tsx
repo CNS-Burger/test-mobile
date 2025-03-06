@@ -16,6 +16,7 @@ const getSupportedMimeTypes = () => {
 };
 
 
+
 export default function SupportType() {
     const [supportedTypes, setSupportedTypes] = useState<string[]>([]);
     useEffect(() => {

@@ -20,6 +20,9 @@ dependencies:
   react-player:
     specifier: ^2.16.0
     version: 2.16.0(react@19.0.0)
+  recordrtc:
+    specifier: ^5.6.2
+    version: 5.6.2
   tone:
     specifier: ^15.0.4
     version: 15.0.4
@@ -2306,6 +2309,10 @@ packages:
   /react@19.0.0:
     resolution: {integrity: sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ==}
     engines: {node: '>=0.10.0'}
+    dev: false
+
+  /recordrtc@5.6.2:
+    resolution: {integrity: sha512-1QNKKNtl7+KcwD1lyOgP3ZlbiJ1d0HtXnypUy7yq49xEERxk31PHvE9RCciDrulPCY7WJ+oz0R9hpNxgsIurGQ==}
     dev: false
 
   /reflect.getprototypeof@1.0.10:
