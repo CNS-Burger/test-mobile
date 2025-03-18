@@ -30,11 +30,21 @@ const getDisplayMode = () => {
     return "browser"; // 기본값
 };
 
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+    const isFullscreen = window.matchMedia('(display-mode: fullscreen)').matches;
+    const isMinimalUi = window.matchMedia('(display-mode: minimal-ui)').matches;
+    const isBrowser = window.matchMedia('(display-mode: browser)').matches;
+
+
   return <div>
     <h1>Browser: {browserName}</h1>
     <h1>OS: {osName}</h1>
     <h1>PWA: {isPWA() ? "Yes" : "No"}</h1>
     <h1>Display Mode: {getDisplayMode()}</h1>
+    <h1>Is Standalone: {isStandalone ? "Yes" : "No"}</h1>
+    <h1>Is Fullscreen: {isFullscreen ? "Yes" : "No"}</h1>
+    <h1>Is Minimal UI: {isMinimalUi ? "Yes" : "No"}</h1>
+    <h1>Is Browser: {isBrowser ? "Yes" : "No"}</h1>
     {/* <h1>Is Mobile: {isMobile() ? "Yes" : "No"}</h1> */}
   </div>;
 }
