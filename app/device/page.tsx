@@ -1,3 +1,5 @@
+"use client";
+
 import { UAParser } from "ua-parser-js";
 
 const isPWA = () => {
