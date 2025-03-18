@@ -18,10 +18,18 @@ export default function Device() {
         );
     }, []);
 
+
+
     return <div>
         <h1>Browser: {browserName}</h1>
         <h1>OS: {osName}</h1>
         <h1>isPWA: {isPWA ? "Yes" : "No"}</h1>
         <h1>Device: {model}, {type}, {vendor}</h1>
+
+           <ul>
+                <li>Max Touch Points: {navigator.maxTouchPoints}</li>
+                <li>Platform: {navigator.platform}</li>
+                <li>User Agent: {navigator.userAgent}</li>
+            </ul>
     </div>;
 }
